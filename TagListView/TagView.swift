@@ -208,4 +208,6 @@ open class TagView: UIButton {
             removeButton.frame.origin.y = 0
         }
     }
+    
+    public var index : Int = 0
 }

@@ -353,6 +353,7 @@ open class TagListView: UIView {
     @discardableResult
     open func addTagView(_ tagView: TagView) -> TagView {
         tagViews.append(tagView)
+        tagView.index = tagViews.index(of: tagView) ?? 0
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
         rearrangeViews()
         
@@ -362,6 +363,7 @@ open class TagListView: UIView {
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         tagViews.insert(tagView, at: index)
+        tagView.index = tagViews.index(of: tagView) ?? 0
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         rearrangeViews()
         
@@ -414,6 +416,10 @@ open class TagListView: UIView {
 
     open func selectedTags() -> [TagView] {
         return tagViews.filter() { $0.isSelected == true }
+    }
+    
+    open func selectedIndexes() -> [Int]{
+        return tagViews.filter { $0.isSelected == true }.map { $0.index }
     }
     
     // MARK: - Events
